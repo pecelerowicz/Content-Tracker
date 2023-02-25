@@ -9,6 +9,9 @@
 	<packaging>pom</packaging>
 	<name>Content-Tracker</name>
 	<description>Content tracker application</description>
+	<modules>
+		<module>content-module</module>
+	</modules>
 	<properties>
 		<java.version>17</java.version>
 		<spring-boot.version>2.5.7</spring-boot.version>
