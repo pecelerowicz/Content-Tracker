@@ -1,4 +1,4 @@
-package com.mpecel.content.tracker.dto;
+package com.mpecel.content.tracker.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AddUserResponse {
+public class RegisterResponse {
     private String message;
 }

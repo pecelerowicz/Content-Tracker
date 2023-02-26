@@ -1,4 +1,4 @@
-package com.mpecel.content.tracker.dto;
+package com.mpecel.content.tracker.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AddUserRequest {
+public class RegisterRequest {
     private String userName;
     private String firstName;
     private String lastName;
