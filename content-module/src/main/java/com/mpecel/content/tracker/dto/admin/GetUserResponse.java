@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class GetUserResponse {
     public GetUserResponse(User user) {
-        this.userName = user.getUserName();
+        this.userName = user.getUsername();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.email = user.getEmail();

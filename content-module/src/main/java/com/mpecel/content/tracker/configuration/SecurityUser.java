@@ -1,57 +1,44 @@
 package com.mpecel.content.tracker.configuration;
 
+import com.mpecel.content.tracker.model.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 
+@AllArgsConstructor
 @Builder
-public class CustomUser implements UserDetails {
-
-    private List<SimpleGrantedAuthority> authorities;
-    private String password;
-    private String username;
-    private boolean isAccountNonExpired;
-    private boolean isAccountNonLocked;
-    private boolean isCredentialsNonExpired;
-    private boolean isEnabled;
-
-
+public class SecurityUser implements UserDetails {
+    private final User user;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.authorities;
+        return List.of(() -> "read");
     }
-
     @Override
     public String getPassword() {
-        return this.password;
+        return this.user.getPassword();
     }
-
     @Override
     public String getUsername() {
-        return this.username;
+        return this.user.getUsername();
     }
-
     @Override
     public boolean isAccountNonExpired() {
-        return this.isAccountNonExpired;
+        return true;
     }
-
     @Override
     public boolean isAccountNonLocked() {
-        return this.isAccountNonLocked;
+        return true;
     }
-
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.isCredentialsNonExpired;
+        return true;
     }
-
     @Override
     public boolean isEnabled() {
-        return this.isEnabled;
+        return true;
     }
 }

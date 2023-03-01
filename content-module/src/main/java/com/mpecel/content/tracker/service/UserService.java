@@ -20,7 +20,7 @@ public class UserService {
 
     public User register(RegisterRequest registerRequest) {
         return userRepository.save(User.builder()
-                .userName(registerRequest.getUserName())
+                .username(registerRequest.getUserName())
                 .firstName(registerRequest.getFirstName())
                 .lastName(registerRequest.getLastName())
                 .email(registerRequest.getEmail())
