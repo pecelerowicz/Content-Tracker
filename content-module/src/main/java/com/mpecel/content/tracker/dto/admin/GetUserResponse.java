@@ -1,4 +1,4 @@
-package com.mpecel.content.tracker.dto;
+package com.mpecel.content.tracker.dto.admin;
 
 import com.mpecel.content.tracker.model.User;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class GetUserResponse {
     public GetUserResponse(User user) {
-        this.userName = user.getUserName();
+        this.userName = user.getUsername();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.email = user.getEmail();

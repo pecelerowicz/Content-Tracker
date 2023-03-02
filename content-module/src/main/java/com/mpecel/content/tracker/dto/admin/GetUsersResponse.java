@@ -1,4 +1,4 @@
-package com.mpecel.content.tracker.dto;
+package com.mpecel.content.tracker.dto.admin;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
