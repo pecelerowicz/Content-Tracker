@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class JpaUserDetailsService implements UserDetailsService {
+
     @Autowired
     private UserRepository userRepository;
     @Override
