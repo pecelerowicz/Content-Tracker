@@ -3,6 +3,7 @@ server:
 spring:
   application:
     name: content
+    mock-key: abcde
   datasource:
     password: mpecel_pass
     url: jdbc:postgresql://localhost:5432/content
