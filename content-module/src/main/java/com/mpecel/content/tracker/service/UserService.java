@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
 
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -26,7 +26,8 @@ public class UserService {
                 .firstName(registerRequest.getFirstName())
                 .lastName(registerRequest.getLastName())
                 .email(registerRequest.getEmail())
-                .password(passwordEncoder.encode(registerRequest.getPassword()))
+//                .password(passwordEncoder.encode(registerRequest.getPassword()))
+                .password(registerRequest.getPassword())
                 .created(LocalDateTime.now())
                 .build());
     }

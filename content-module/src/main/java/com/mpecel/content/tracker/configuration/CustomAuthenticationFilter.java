@@ -12,21 +12,33 @@ import java.io.IOException;
 
 @Component
 public class CustomAuthenticationFilter implements Filter {
-
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        String authorization = httpServletRequest.getHeader("Authorization");
+        String customAuthorization = httpServletRequest.getHeader("CustomAuthorization");
 
-        var a = new CustomAuthentication(authorization, null);
-        Authentication result = authenticationManager.authenticate(a);
+        String principal = extractPrincipal(customAuthorization);
+        String credentials = extractPassword(customAuthorization);
 
-        if(result.isAuthenticated()) {
-            SecurityContextHolder.getContext().setAuthentication(result);
+        var customAuthentication = new CustomAuthentication(principal, credentials);
+
+        Authentication resultAuthentication = authenticationManager.authenticate(customAuthentication);
+
+
+        if(resultAuthentication.isAuthenticated()) {
+            SecurityContextHolder.getContext().setAuthentication(resultAuthentication);
             chain.doFilter(request, response);
         }
+    }
+
+    private String extractPrincipal(String customAuthorization) {
+        return customAuthorization.split(";")[0];
+    }
+
+    private String extractPassword(String customAuthorization) {
+        return customAuthorization.split(";")[1];
     }
 }
