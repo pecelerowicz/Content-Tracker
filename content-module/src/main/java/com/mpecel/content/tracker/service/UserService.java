@@ -4,7 +4,7 @@ import com.mpecel.content.tracker.dto.user.RegisterRequest;
 import com.mpecel.content.tracker.model.User;
 import com.mpecel.content.tracker.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,6 +18,11 @@ public class UserService {
 
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    public User getUser(String username) {
+        return userRepository.findUserByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("Username %s not found", username)));
     }
 
     public User register(RegisterRequest registerRequest) {

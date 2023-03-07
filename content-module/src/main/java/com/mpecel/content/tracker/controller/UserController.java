@@ -19,6 +19,7 @@ public class UserController {
      */
     @PostMapping("/register")
     public RegisterResponse register(@RequestBody RegisterRequest registerRequest) {
+        System.out.println("tutaj");
         User addedUser = userService.register(registerRequest);
         return RegisterResponse.builder().message("User with id " + addedUser.getId() + " was added.").build();
     }

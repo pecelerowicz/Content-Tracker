@@ -16,21 +16,21 @@ public class CustomAuthenticationFilter implements Filter {
     private AuthenticationManager authenticationManager;
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         String customAuthorization = httpServletRequest.getHeader("CustomAuthorization");
 
-        String principal = extractPrincipal(customAuthorization);
-        String credentials = extractPassword(customAuthorization);
+        if(customAuthorization != null && customAuthorization.contains(";")) {
+            String principal = extractPrincipal(customAuthorization);
+            String credentials = extractPassword(customAuthorization);
 
-        var customAuthentication = new CustomAuthentication(principal, credentials);
+            var beforeAuthentication = new CustomAuthentication(principal, credentials);
 
-        Authentication resultAuthentication = authenticationManager.authenticate(customAuthentication);
+            Authentication afterAuthentication = authenticationManager.authenticate(beforeAuthentication);
 
-
-        if(resultAuthentication.isAuthenticated()) {
-            SecurityContextHolder.getContext().setAuthentication(resultAuthentication);
-            chain.doFilter(request, response);
+            if(afterAuthentication.isAuthenticated()) {
+                SecurityContextHolder.getContext().setAuthentication(afterAuthentication);
+                chain.doFilter(request, response);
+            }
         }
     }
 
